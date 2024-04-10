@@ -68,7 +68,7 @@ void signalGenerate(void * parameter) {
     }
 }
 
-// ISR for Task 2
+// ISR for Task2
 void IRAM_ATTR onRiseTask2() {
     unsigned long currentTime = micros();
     unsigned long pulseWidth = currentTime - lastRiseTimeTask2;
@@ -80,18 +80,19 @@ void IRAM_ATTR onRiseTask2() {
     }
 }
 
-// ISR for Task 3
+// ISR for Task3
 void IRAM_ATTR onRiseTask3() {
     unsigned long currentTime = micros();
     unsigned long pulseWidth = currentTime - lastRiseTimeTask3;
     lastRiseTimeTask3 = currentTime;
     
+    // Validate pulse width
     if (pulseWidth >= 1000 && pulseWidth <= 2000) {
         freqISRtask3 = 1000000 / pulseWidth;
     }
 }
 
-// Task function for Task 2
+// Task2
 void frequencyMeasureTask2(void * parameter) {
     // Get the task handle for use with uxTaskGetStackHighWaterMark()
     TaskHandle_t taskHandle = xTaskGetCurrentTaskHandle();
@@ -115,7 +116,7 @@ void frequencyMeasureTask2(void * parameter) {
     }
 }
 
-// Task 3
+// Task3
 void frequencyMeasureTask3(void * parameter) {
     // Get the task handle for use with uxTaskGetStackHighWaterMark()
     TaskHandle_t taskHandle = xTaskGetCurrentTaskHandle();
@@ -162,11 +163,14 @@ void sampleAnalogAndCheckError(void * parameter) {
         TickType_t xLastWakeTime = xTaskGetTickCount();
         // Read from analog input
         analogValue = analogRead(analogPin);
+
         // Subtract oldest reading from total
         total = total - readings[readIndex];
+
         // Read new value and add to total
         readings[readIndex] = analogValue;
         total = total + readings[readIndex];
+
         // Move to next reading position
         readIndex = readIndex + 1;
 
@@ -252,7 +256,9 @@ void toggleLedWithButton(void * parameter) {
 
         // Reset debounce timer if button state changes
         if (reading != lastButtonState) {
-            lastDebounceTime = xTaskGetTickCount(); // Capture the current tick count
+            // Capture the current tick count
+            lastDebounceTime = xTaskGetTickCount();
+
             //buttonPressedTime = micros();
         }
         
@@ -260,10 +266,12 @@ void toggleLedWithButton(void * parameter) {
         if (xTaskGetTickCount() - lastDebounceTime >= xDelay) {
             // Change LED state if button state remains changed after debounce time
             if (reading != buttonState) {
-                buttonState = reading; // Update the button state
+                // Update the button state
+                buttonState = reading;
                 if (buttonState == LOW){ // Check if button is pressed
                   int event = 1;
-                  xQueueSend(eventQueue, &event, 0); // Send an event to the queue
+                  // Send an event to the queue
+                  xQueueSend(eventQueue, &event, 0);
                 }
             }
         }
@@ -272,6 +280,7 @@ void toggleLedWithButton(void * parameter) {
         // Check the remaining stack space
         UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(taskHandle);
         //printRemainingStack(6, uxHighWaterMark);
+
         // Proper RTOS delay to yield control to other tasks
         vTaskDelay(xDelay);
     }
