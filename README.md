@@ -22,7 +22,7 @@ This project is an implementation of a machine monitoring system using FreeRTOS 
 
 ### Circuit Design Diagram
 
-![Circuit Design Diagram](images/circuit design.png)
+![Circuit Design Diagram](images/circuit_design.png)
 
 # Usage
 
