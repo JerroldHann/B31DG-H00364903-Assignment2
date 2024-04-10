@@ -15,19 +15,18 @@ This project is an implementation of a machine monitoring system using FreeRTOS 
 ### Prerequisites
 
 - An ESP32 development board
-- Arduino IDE or similar (configured for ESP32)
+- Arduino IDE (configured for ESP32)
 - FreeRTOS (usually bundled with ESP32 support in Arduino IDE)
-
-### Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-github-username/embedded-system-monitor.git
-****
+- An oscilloscope
+- A signal generator
 
 # Usage
 
-Once the firmware is uploaded to the ESP32, the system will start monitoring according to the configured tasks. Serial outputs can be viewed using the Arduino IDE's serial monitor set to 9600 bps.
+Connect the circuit and configure the corresponding serial port, and once the firmware is uploaded to the ESP32, the system will start monitoring according to the configured tasks. Serial outputs can be viewed using the Arduino IDE's serial monitor set to 9600 bps.
+
+# Contact
+
+yh2013@hw.ac.uk
 
 # Acknowledgements
 
