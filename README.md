@@ -1,5 +1,6 @@
 # B31DG-H00364903-Assignment2
 
+## Overview
 This project is an implementation of a machine monitoring system using FreeRTOS and the ESP32 development kit. It involves multiple tasks that handle digital signal output, frequency measurement, analog input sampling, error detection, serial logging, button-controlled LED toggling, and CPU workload simulation.
 
 ## Features
