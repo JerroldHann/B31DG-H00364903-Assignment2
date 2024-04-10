@@ -20,6 +20,10 @@ This project is an implementation of a machine monitoring system using FreeRTOS 
 - An oscilloscope
 - A signal generator
 
+### Circuit Design Diagram
+
+![Circuit Design Diagram](images/circuit design.png)
+
 # Usage
 
 Connect the circuit and configure the corresponding serial port, and once the firmware is uploaded to the ESP32, the system will start monitoring according to the configured tasks. Serial outputs can be viewed using the Arduino IDE's serial monitor set to 9600 bps.
